@@ -24,10 +24,14 @@ int main(int argc, char* argv[])
     write_output.setf(std::ios::showpos);
     write_output.precision(13);
         
-    for (int i = 0; i < 4; i++){write_output << x[i] << " ";} write_output<<"\n"; write_output.flush();
+    for (int i = 0; i < 4; i++){write_output << x[i] << " ";} 
+    write_output<<"\n"; 
+    write_output.flush();
 
-    for (int i = 0; i < 4; i++){write_output << y[i] << " ";} write_output<<"\n"; write_output.flush();
-    
+    for (int i = 0; i < 4; i++){write_output << y[i] << " ";} 
+    write_output<<"\n"; 
+    write_output.flush();
+
     write_output.close();
     
     return 0;
