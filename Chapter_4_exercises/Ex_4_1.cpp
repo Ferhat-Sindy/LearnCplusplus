@@ -19,5 +19,7 @@ int main(int argc, char* argv[])
     std::cout<<"p_j = "<< *p_j << "\n";
     std::cout<<"p_k = "<< *p_k << "\n";
 
+    delete p_k;
+
     return 0;
 }

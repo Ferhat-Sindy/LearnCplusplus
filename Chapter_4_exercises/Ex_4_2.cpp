@@ -18,4 +18,7 @@ int main()
     
     std::cout << "AFTER, x = " << x << " and y = "<< y <<"\n";
 
+    delete p_z;
+
+    return 0;
 }
