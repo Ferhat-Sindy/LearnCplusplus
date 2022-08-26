@@ -3,17 +3,37 @@
 
 void minor_ij(double** A, double** B, int l, int k,int n)
 {
+    std::cout<<"nice \n";
+    std::cout.flush();
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
         {
-            if ((i!=l)&&(j!=k))
+            std::cout<<i<<" "<<j<<"\n";
+            std::cout.flush();
+            if ((i<l)&&(j<k))
             {
                 B[i][j] = A[i][j];
+                std::cout<<"nice_1 \n";
+                std::cout.flush();
             }
-            else
+            else if ((i>l)&&(j<k))
             {
-                 
+                B[i-1][j] = A[i][j];
+                std::cout<<"nice_2 \n";
+                std::cout.flush();
+            }
+            else if ((i<l)&&(j>k))
+            {
+                B[i][j-1] = A[i][j];
+                std::cout<<"nice_3 \n";
+                std::cout.flush();
+            }
+            else if ((i>l)&&(j>k))
+            {
+                B[i-1][j-1] = A[i][j];
+                std::cout<<"nice_4 \n";
+                std::cout.flush();
             }
         }
     }
@@ -54,7 +74,7 @@ double determinant(double** A, int n)
 
 int main(int argc, char* argv[])
 {
-    int n = 3;
+    int n = 2;
     double** A = new double* [n];
     for (int i = 0; i < n; i++)
     {
@@ -63,6 +83,7 @@ int main(int argc, char* argv[])
     
     A[0][0] = 1, A[0][1] = 2, A[1][0] = 3, A[1][1] = 4;
     //std::cout<<"Det = "<<determinant(A,n)<<"\n";
+    //std::cout.flush();
 
     double** B = new double* [n-1];
     for (int i = 0; i < n-1; i++)
@@ -70,8 +91,9 @@ int main(int argc, char* argv[])
         B[i] = new double [n-1];
     }
     
-    minor_ij(A,B,1,1,2);
-    std::cout<<B[1][1]<<"\n";
+    minor_ij(A,B,1,0,2);
+    std::cout<<B[0][0]<<"\n";
+    std::cout.flush();
 
     return 0;
 }
