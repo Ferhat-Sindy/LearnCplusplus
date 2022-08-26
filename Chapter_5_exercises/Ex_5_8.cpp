@@ -56,7 +56,7 @@ double determinant(double** A, int n)
             //using recursion. Note result is returned later.
             result+= pow(-1,k+2)*A[0][k]*determinant(B,n-1);
 
-            std::cout<<"k: "<<k<<" result: "<<result<<" B: "<<B[0][0]<<"\n";
+            //std::cout<<"k: "<<k<<" result: "<<result<<" B: "<<B[0][0]<<"\n";
 
             //deleting pointer which stores minor_0k.
             for (int i = 0; i < n-1; i++)
