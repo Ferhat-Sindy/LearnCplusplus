@@ -139,4 +139,5 @@ int main(int argc, char* argv[])
 
     SolveLinearSystem(A, x, b, n);  
     std::cout<<x[0]<<" "<<x[1]<<" "<<x[2]<<" "<<"\n";
+    return 0;
 }
