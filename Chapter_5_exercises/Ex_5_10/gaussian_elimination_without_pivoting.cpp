@@ -96,7 +96,7 @@ int main(int argc, char* argv[])
     {
         delete[] A[i];
     }
-    delete A   
+    delete A;  
 
     return 0;
 }
