@@ -121,10 +121,41 @@ void Gaussian_elimination_with_pivotting(double** A, double* x, double* b, int n
         }
         
         Permutation_matrix(P,k,find_index_i(A,find_max_i(A,k,n),n,k),n);
+
+        std::cout<<"P with k = "<<k<<"\n";
+        std::cout<<P[0][0]<<" "<<P[0][1]<<" "<<P[0][2]<<"\n";
+        std::cout<<P[1][0]<<" "<<P[1][1]<<" "<<P[1][2]<<"\n";
+        std::cout<<P[2][0]<<" "<<P[2][1]<<" "<<P[2][2]<<"\n";
+        std::cout<<"A before permutation with k = "<<k<<"\n";
+        std::cout<<A[0][0]<<" "<<A[0][1]<<" "<<A[0][2]<<"\n";
+        std::cout<<A[1][0]<<" "<<A[1][1]<<" "<<A[1][2]<<"\n";
+        std::cout<<A[2][0]<<" "<<A[2][1]<<" "<<A[2][2]<<"\n";
+
         Multiply(P,A,PA,n);
         Multiply(P,b,Pb,n);
-        A = PA;
-        b = Pb;
+
+        for (int i = 0; i < n; i++)
+        {
+            b[i] = Pb[i];
+            for (size_t j = 0; j < n; j++)
+            {
+                A[i][j] = PA[i][j];
+            }
+        }
+        
+
+        //**A = **PA;
+        //*b = *Pb;
+        
+        std::cout<<"PA after permutation with k = "<<k<<"\n";
+        std::cout<<PA[0][0]<<" "<<PA[0][1]<<" "<<PA[0][2]<<"\n";
+        std::cout<<PA[1][0]<<" "<<PA[1][1]<<" "<<PA[1][2]<<"\n";
+        std::cout<<PA[2][0]<<" "<<PA[2][1]<<" "<<PA[2][2]<<"\n";
+
+        std::cout<<"A after permutation with k = "<<k<<"\n";
+        std::cout<<A[0][0]<<" "<<A[0][1]<<" "<<A[0][2]<<"\n";
+        std::cout<<A[1][0]<<" "<<A[1][1]<<" "<<A[1][2]<<"\n";
+        std::cout<<A[2][0]<<" "<<A[2][1]<<" "<<A[2][2]<<"\n";
 
         M_ik(A, M, n, k);
 
@@ -141,18 +172,15 @@ void Gaussian_elimination_with_pivotting(double** A, double* x, double* b, int n
             b[i] = b[i] - M[i]*b[k];
         }
 
-        std::cout<<"P with k = "<<k<<"\n";
-        std::cout<<P[0][0]<<" "<<P[0][1]<<" "<<P[0][2]<<"\n";
-        std::cout<<P[1][0]<<" "<<P[1][1]<<" "<<P[1][2]<<"\n";
-        std::cout<<P[2][0]<<" "<<P[2][1]<<" "<<P[2][2]<<"\n";
-        std::cout<<"A with k = "<<k<<"\n";
+        std::cout<<"M with k = "<<k<<"\n";
+        std::cout<<M[0]<<" "<<M[1]<<" "<<M[2]<<" "<<"\n";
+        std::cout<<"A after gaussian step with k = "<<k<<"\n";
         std::cout<<A[0][0]<<" "<<A[0][1]<<" "<<A[0][2]<<"\n";
         std::cout<<A[1][0]<<" "<<A[1][1]<<" "<<A[1][2]<<"\n";
         std::cout<<A[2][0]<<" "<<A[2][1]<<" "<<A[2][2]<<"\n";
-        std::cout<<"M with k = "<<k<<"\n";
-        std::cout<<M[0]<<" "<<M[1]<<" "<<M[2]<<" "<<"\n";
         std::cout<<"b = \n";
         std::cout<<b[0]<<" "<<b[1]<<" "<<b[2]<<"\n";
+        std::cout<<"\n";
 
 
         delete[] M;
@@ -161,7 +189,13 @@ void Gaussian_elimination_with_pivotting(double** A, double* x, double* b, int n
         {
              delete[] PA[i];
         }
-        delete[] PA;     
+        delete[] PA;    
+
+        std::cout<<"A after deleting PA with k = "<<k<<"\n";
+        std::cout<<A[0][0]<<" "<<A[0][1]<<" "<<A[0][2]<<"\n";
+        std::cout<<A[1][0]<<" "<<A[1][1]<<" "<<A[1][2]<<"\n";
+        std::cout<<A[2][0]<<" "<<A[2][1]<<" "<<A[2][2]<<"\n";
+
     }
 
     BackwardSubstitution(A, x, b, n);
@@ -180,14 +214,14 @@ int main(int argc, char* argv[])
         P[i] = new double [n];
     }
     
-    A[0][0] = 4, A[0][1] = -3, A[0][2] = 1;
-    A[1][0] = -2, A[1][1] = 1, A[1][2] = -3;
-    A[2][0] = 1, A[2][1] = -1, A[2][2] = 2;
+    A[0][0] = 4, A[0][1] = -2, A[0][2] = 2;
+    A[1][0] = -2, A[1][1] = 1, A[1][2] = 3;
+    A[2][0] = 2, A[2][1] = -2, A[2][2] = 2;
 
     double* b = new double [n];
     double* x = new double [n];
 
-    b[0] = -8, b[1] = -4, b[2] = 3;
+    b[0] = 1, b[1] = 1, b[2] = 1;
 
     //std::cout<<"The max = "<<find_max_i(A,0,n);std::cout.flush()<<"\n";
     //std::cout<<"The max_index = "<<find_index_i(A,find_max_i(A,0,n),n,0);std::cout.flush()<<"\n";
